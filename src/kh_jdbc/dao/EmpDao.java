@@ -102,6 +102,5 @@ public class EmpDao {
             System.out.println();
         }
     }
-
 }
 
