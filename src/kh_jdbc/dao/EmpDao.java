@@ -125,6 +125,23 @@ public class EmpDao {
         Common.close(conn);
     }
 
+    public void empDelete() {
+        System.out.print("삭제할 이름을 입력 하세요 : ");
+        String name = sc.next();
+        String sql = "DELETE FROM EMP WHERE ENAME = ?";
+
+        try {
+            conn = Common.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, name);
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Common.close(stmt);
+        Common.close(conn);
+    }
 
     public void empSelectPrint(List<EmpVo> list) {
         for (EmpVo e : list) {
