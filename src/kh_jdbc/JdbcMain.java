@@ -26,6 +26,8 @@ public class JdbcMain {
                     dao.empInsert();
                     break;
                 case 3 :
+                    dao.empUpdate();
+                    break;
                 case 4 :
                 case 5 :
                     System.out.println("메뉴를 종료합니다.");

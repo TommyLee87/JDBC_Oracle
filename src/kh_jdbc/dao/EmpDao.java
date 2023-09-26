@@ -89,6 +89,43 @@ public class EmpDao {
 
     }
 
+    public void empUpdate() {
+        System.out.print("변경할 사원의 이름을 입력 하세요 : ");
+        String name = sc.next();
+        System.out.print("사원번호 : ");
+        int no = sc.nextInt();
+        System.out.print("직책 : ");
+        String job = sc.next();
+        System.out.print("상관 : ");
+        int mgr = sc.nextInt();
+        System.out.print("입사일 : ");
+        String date = sc.next();
+        System.out.print("급여 : ");
+        BigDecimal sal = sc.nextBigDecimal();
+        System.out.print("성과급 : ");
+        BigDecimal comm = sc.nextBigDecimal();
+        System.out.print("부서번호 : ");
+        int deptNo = sc.nextInt();
+
+        String sql = "UPDATE EMP SET EMPNO = ?, JOB = ?, MRG = ?, HIREDATE = ?, SAL = ?, COMM = ?, DEPTNO = ? WHERE ENAME = ?";
+
+        try {
+            conn = Common.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, job);
+            pstmt.setBigDecimal(2, sal);
+            pstmt.setBigDecimal(3,  comm);
+            pstmt.setString(4, name);
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Common.close(stmt);
+        Common.close(conn);
+    }
+
+
     public void empSelectPrint(List<EmpVo> list) {
         for (EmpVo e : list) {
             System.out.print(e.getEmpNo() + " ");
